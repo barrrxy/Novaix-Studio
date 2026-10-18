@@ -16,10 +16,10 @@
      ---------------------------------------------------------- */
   const SOCIAL_LINKS = {
     instagram: 'https://instagram.com/barr_0a',   // contoh: 'https://instagram.com/usernameanda'
-    tiktok:    '',   // contoh: 'https://www.tiktok.com/@usernameanda'
+    tiktok:    'https://www.tiktok.com/@wongedannn_',   // contoh: 'https://www.tiktok.com/@usernameanda'
     whatsapp:  'https://wa.me/6285704309385',   // contoh: 'https://wa.me/628123456789'
-    email:     '',   // contoh: 'mailto:nama@domain.com'
-    bug:       ''    // contoh: 'mailto:nama@domain.com?subject=Laporan%20bug' atau link form
+    email:     'mailto:barrrxy@gmail.com',   // contoh: 'mailto:nama@domain.com'
+    bug:       'mailto:barrrxy@gmail.com?subject=Lapor%20Bug%20NOVAIX%20STUDIO'    // contoh: 'mailto:nama@domain.com?subject=Laporan%20bug' atau link form
   };
 
   /* ----------------------------------------------------------
