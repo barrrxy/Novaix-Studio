@@ -159,49 +159,42 @@
   <div class="nx-modal nx-preview-modal" id="previewModal" hidden><div class="nx-modal-backdrop" data-close></div><div class="nx-modal-panel nx-preview-panel" role="dialog" aria-modal="true" aria-labelledby="previewTitle"><div class="nx-preview-bar"><button type="button" class="nx-pv-btn" data-close aria-label="Kembali">← Kembali</button><strong id="previewTitle">Preview</strong><a class="nx-pv-btn" id="previewNewTab" href="#" target="_blank" rel="noopener noreferrer">Tab baru ↗</<section id="proyek" class="nx-section nx-project-section"><div class="nx-project-heading reveal"><div><div class="nx-section-index">03 <span>/ SELECTED WORKS</span></div><p class="nx-eyebrow">MADE IN THE NOVAIX UNIVERSE</p><h2>Eksperimen yang<br>sedang <em>bertumbuh.</em></h2></div><p>Setiap proyek adalah langkah belajar berikutnya. Sebagian masih berupa prototipe, sebagian terus disempurnakan.</p></div><div class="nx-catalog-tools" id="projectTools" hidden><label class="nx-search"><span aria-hidden="true">⌕</span><input id="projectSearch" type="search" placeholder="Cari nama, kategori, atau deskripsi…" autocomplete="off" aria-label="Cari proyek"></label><div class="nx-filter-row" id="projectFilters" role="group" aria-label="Filter kategori"></div><p class="nx-result-count" id="projectCount" aria-live="polite"></p></div><div class="nx-project-grid" id="publicProjectList"><article class="nx-project nx-project-nubi reveal"><div class="nx-project-visual"><span class="nx-project-orbit"></span><span class="nx-project-glyph">✿</span><span class="nx-project-number">PROJECT 001</span></div><div class="nx-project-info"><div class="nx-project-meta"><span>INTERACTIVE COMPANION</span><i>IN DEVELOPMENT</i></div><h3>Nubi Project</h3><p>Teman plush virtual yang imut, ekspresif, dan merespons interaksi.</p></div></article><article class="nx-project nx-project-phantom reveal"><div class="nx-project-visual"><span class="nx-phantom-grid"></span><span class="nx-project-glyph">◉</span><span class="nx-project-number">PROJECT 002</span></div><div class="nx-project-info"><div class="nx-project-meta"><span>DIGITAL EXPERIMENT</span><i>EXPLORING</i></div><h3>NOVAIX PHANTOM</h3><p>Eksperimen antarmuka bertema galaksi dan informasi perangkat.</p></div></article><article class="nx-project nx-project-ai reveal"><div class="nx-project-visual"><span class="nx-ai-rings"></span><span class="nx-project-glyph">✧</span><span class="nx-project-number">PROJECT 003</span></div><div class="nx-project-info"><div class="nx-project-meta"><span>CONVERSATIONAL WEB</span><i>PROTOTYPE</i></div><h3>NOVAIX AI</h3><p>Eksplorasi pengalaman asisten digital dengan antarmuka percakapan.</p></div></article></div><div class="nx-empty" id="projectEmpty" hidden><span>✦</span><h3>Proyek tidak ditemukan</h3><p>Coba kata kunci lain atau pilih kategori berbeda.</p><button type="button" class="nx-btn nx-btn-outline" id="projectReset">Reset pencarian</button></div><div class="nx-project-foot"><span>MORE IDEAS ARE IN ORBIT</span><span class="nx-foot-line"></span><a href="#kerjasama">Punya ide untuk dikembangkan? ↗</a></div></section>
 ></div><div class="nx-preview-hint" id="previewHint" hidden><span>Website lain: tampilan tertanam tidak bisa dipastikan. Jika kosong atau ditolak, buka di tab baru.</span><a class="nx-card-btn nx-card-btn-main" id="previewHintLink" href="#" target="_blank" rel="noopener noreferrer">Buka ↗</a></div><div class="nx-preview-stage"><div class="nx-preview-state" id="previewState"></div><iframe id="previewFrame" title="Live preview proyek" loading="lazy" referrerpolicy="no-referrer" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe></div><p class="nx-preview-note">Beberapa website menolak ditampilkan di dalam panel karena alasan keamanan. Jika area di atas kosong, gunakan tombol “Tab baru”.</p></div></div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script>
-  (function () {
-    var splash = document.getElementById('novaixSplash');
-    var button = document.getElementById('splashContinue');
-    if (!splash || !button) return;
 
-    var alreadySeen = false;
-    try {
-      alreadySeen = sessionStorage.getItem('novaixSplashSeen') === '1';
-    } catch (e) {}
+<script>
+(function () {
+  var splash = document.getElementById('novaixSplash');
+  var button = document.getElementById('splashContinue');
 
-    if (alreadySeen) {
+  if (!splash || !button) return;
+
+  splash.hidden = false;
+
+  document.documentElement.classList.add('splash-active');
+  document.body.classList.add('splash-active');
+
+  window.scrollTo(0, 0);
+
+  button.addEventListener('click', function () {
+    if (button.disabled) return;
+
+    button.disabled = true;
+    splash.classList.add('splash-leaving');
+
+    window.setTimeout(function () {
       splash.hidden = true;
+
       document.body.classList.add('splash-complete');
+      document.body.classList.remove('splash-active');
+      document.documentElement.classList.remove('splash-active');
+
       window.scrollTo(0, 0);
-      return;
-    }
+      button.disabled = false;
+      splash.classList.remove('splash-leaving');
+    }, 520);
+  });
+})();
+</script>
 
-    // Kunci halaman di belakang splash sampai tombol Lanjutkan ditekan.
-    document.documentElement.classList.add('splash-active');
-    document.body.classList.add('splash-active');
-    window.scrollTo(0, 0);
-
-    button.addEventListener('click', function () {
-      if (button.disabled) return;
-      button.disabled = true;
-      window.scrollTo(0, 0);
-      splash.classList.add('splash-leaving');
-      try {
-        sessionStorage.setItem('novaixSplashSeen', '1');
-      } catch (e) {}
-
-      window.setTimeout(function () {
-        splash.hidden = true;
-        document.body.classList.add('splash-complete');
-        document.body.classList.remove('splash-active');
-        document.documentElement.classList.remove('splash-active');
-        window.scrollTo(0, 0);
-        button.disabled = false;
-      }, 520);
-    });
-  })();
-  </script>
   <script src="projects.js" defer></script><script src="animation.js" defer></script><script src="update.js" defer></script>
 </body>
 </html>
